@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 function App() {
+  // App changes
   const [themeP, setTheme] = useState(true);
   const theme = createTheme({
     palette: { mode: themeP ? "dark" : "light" },
