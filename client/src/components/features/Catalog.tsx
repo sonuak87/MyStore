@@ -1,16 +1,16 @@
-import { Product } from './../../product';
-import ProductList from '../product/productList';
-
-interface Props{
-  product:Product[]; 
+import { Product } from "./../../product";
+import ProductList from "../product/productList";
+import React from "react";
+interface Props {
+  product: Product[];
 }
 
-const Catalog = ({product}:Props) => {
+const Catalog = ({ product }: Props) => {
   return (
-    <> 
-    <ProductList product={product}/>
+    <>
+      <ProductList product={product} />
     </>
-  )
-}
+  );
+};
 
-export default Catalog
+export default Catalog;

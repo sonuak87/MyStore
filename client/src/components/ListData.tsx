@@ -1,30 +1,33 @@
-import { useState,useEffect } from 'react';
-import { Product } from '../product';
-import Catalog from './features/Catalog';
-const ListData = () => { 
-const [product, setState] = useState<Product[]>([]);
- useEffect(()=>{  
-  fetch('https://localhost:7156/api/Product')
-  .then((response) => response.json())
-  .then((data) => setState(data))
- },[])
- 
-  const addItem=()=>{
-    setState(prevState=>[...prevState,
+import React from "react";
+import { useState, useEffect } from "react";
+import agent from "../api/agent";
+import { Product } from "../product";
+import Catalog from "./features/Catalog";
+
+const ListData = () => {
+  const [product, setState] = useState<Product[]>([]);
+  useEffect(() => {
+    agent.Catalog.list().then((response) => setState(response));
+  }, []);
+
+  const addItem = () => {
+    setState((prevState) => [
+      ...prevState,
       {
-      id:prevState.length+100,
-      name:'Product '+(prevState.length+1)
-    }])
-  }
-   const ObjProp={
-    name:'Add Item',
-    methodName:addItem
-   }
+        id: prevState.length + 100,
+        name: "Product " + (prevState.length + 1),
+      },
+    ]);
+  };
+  const ObjProp = {
+    name: "Add Item",
+    methodName: addItem,
+  };
 
   return (
-   <>
-    <Catalog product={product}/>
-   </> 
-  )
-}
+    <>
+      <Catalog product={product} />
+    </>
+  );
+};
 export default ListData;
